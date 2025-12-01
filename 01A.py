@@ -1,4 +1,4 @@
-with open("01.txt") as f:
+with open("test.txt") as f:
     instructions = [L.rstrip() for L in f.readlines()]
 
 
@@ -12,16 +12,16 @@ def traverse_right(current_index, count):
     return Delta if Delta <= 99 else abs(100 - Delta)
 
 
+answer = 0
 current_index = 50
-count = 0
 for i in instructions:
-    c = int(i[1:])
-    if c >= 100:
-        c = int(i[-2:])
+    count = int(i[1:])
+    if count >= 100:
+        count = int(i[-2:])
     if i.startswith("L"):
-        current_index = traverse_left(current_index, c)
+        current_index = traverse_left(current_index, count)
     else:
-        current_index = traverse_right(current_index, c)
+        current_index = traverse_right(current_index, count)
     if current_index == 0:
-        count += 1
-print(count)
+        answer += 1
+print(answer)
